@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.ShoppingList" parent="Base.Theme.ShoppingList" />
+    <style name="CardView_Enabled." parent="CardView">
+        <item name="android:foreground">
+            @drawable/gradient_item_enabled
+        </item>
+    </style>
+
+    <style name="CardView_Disabled." parent="CardView">
+        <item name="android:foreground">
+            @drawable/gradient_item_disabled
+        </item>
+    </style>
 </resources>
