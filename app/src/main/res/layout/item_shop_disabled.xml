@@ -5,25 +5,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="7dp"
     android:elevation="1dp"
-    style="@style/CardView_Disabled."
     app:cardCornerRadius="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_margin="15dp"
-        android:background="@color/cardview_light_background">
-
+        android:padding="15dp"
+        android:background="@drawable/gradient_item_disabled">
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="@font/days"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             android:text="sdfsdfs" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_regular"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:text="5414" />
 
 
