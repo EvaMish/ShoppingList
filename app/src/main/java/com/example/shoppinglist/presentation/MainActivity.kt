@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             val layoutId = if (item.enabled) {
                 R.layout.item_shop_enabled
             } else R.layout.item_shop_disabled
+
             val view = LayoutInflater.from(this).inflate(layoutId, llShopList, false)
             llShopList.addView(view)
 
