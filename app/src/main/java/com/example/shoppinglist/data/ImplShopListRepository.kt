@@ -7,15 +7,18 @@ import com.example.shoppinglist.domain.ShopListRepository
 import java.lang.RuntimeException
 
 object ImplShopListRepository : ShopListRepository {
-    private val shopList = mutableListOf<ShopItem>()
+    private val shopList = sortedSetOf<ShopItem>({ o1, o2 -> o1.id.compareTo(o2.id) })
     private val shopListLiveData = MutableLiveData<List<ShopItem>>()
+
     private var autoIncrementId = 0
+
     init {
-        for (i in 0 until 5) {
-            val item = ShopItem("Name$i", enabled = true, count = 5)
+        for (i in 0 until 20) {
+            val item = ShopItem("Name$i", enabled = true, count = i)
             addItem(item)
         }
     }
+
     override fun addItem(shopItem: ShopItem) {
         if (shopItem.id == ShopItem.UNKNOWN_ID) {
             shopItem.id = autoIncrementId++
@@ -24,10 +27,12 @@ object ImplShopListRepository : ShopListRepository {
         updateList()
 
     }
+
     override fun deleteItem(shopItem: ShopItem) {
         shopList.remove(shopItem)
         updateList()
     }
+
     override fun editItem(shopItem: ShopItem) {
         val oldElement = getItem(shopItem.id)
         shopList.remove(oldElement)
@@ -43,8 +48,9 @@ object ImplShopListRepository : ShopListRepository {
         return shopListLiveData
     }
 
-    private fun updateList(){
-        shopListLiveData.value= shopList.toList()
+    private fun updateList() {
+        shopListLiveData.value = shopList.toList()
     }
 
 }
+
