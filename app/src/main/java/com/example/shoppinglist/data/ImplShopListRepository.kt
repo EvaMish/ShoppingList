@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.shoppinglist.domain.ShopItem
 import com.example.shoppinglist.domain.ShopListRepository
-import java.lang.RuntimeException
+import kotlin.random.Random
 
 object ImplShopListRepository : ShopListRepository {
     private val shopList = sortedSetOf<ShopItem>({ o1, o2 -> o1.id.compareTo(o2.id) })
@@ -14,7 +14,7 @@ object ImplShopListRepository : ShopListRepository {
 
     init {
         for (i in 0 until 20) {
-            val item = ShopItem("Name$i", enabled = true, count = i)
+            val item = ShopItem("Name$i", enabled = Random.nextBoolean(), count = i)
             addItem(item)
         }
     }
@@ -54,3 +54,6 @@ object ImplShopListRepository : ShopListRepository {
 
 }
 
+fun main(){
+
+}
