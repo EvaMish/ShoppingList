@@ -1,38 +1,30 @@
 package com.example.shoppinglist.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.LayoutDirection
-import android.util.Log
-import android.view.LayoutInflater
-import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglist.R
-import com.example.shoppinglist.domain.ShopItem
 
 class MainActivity : AppCompatActivity() {
-    lateinit var viewModel: MainViewModel
-    lateinit var llShopList: LinearLayout
-
+    private lateinit var viewModel: MainViewModel
+    private lateinit var adapter: ShopListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        llShopList=findViewById(R.id.ll_shopList)
+        setUpRecyclerView()
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.shopListLiveData.observe(this) {
-            showList(it)
+        viewModel.shopList.observe(this) {
+            adapter.shopList=it
+            //Log.d("++++++++", it.toString())
         }
     }
 
-    private fun showList(list: List<ShopItem>) {
-        for (item in list) {
-            val layoutId = if (item.enabled) {
-                R.layout.item_shop_enabled
-            } else R.layout.item_shop_disabled
-            val view = LayoutInflater.from(this).inflate(layoutId, llShopList, false)
-            llShopList.addView(view)
-
-        }
+    private fun setUpRecyclerView(){
+        val rvShopList=findViewById<RecyclerView>(R.id.rv_shop_list)
+        adapter= ShopListAdapter()
+        rvShopList.adapter=adapter
     }
+
 }
 

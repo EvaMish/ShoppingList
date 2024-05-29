@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="7dp"
-    android:elevation="1dp"
+    app:cardElevation="4dp"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
@@ -14,21 +14,22 @@
         android:padding="15dp"
         android:background="@drawable/gradient_item_disabled">
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="@font/days"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:text="sdfsdfs" />
+            android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_regular"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:text="5414" />
+            android:layout_gravity="center" />
 
 
     </LinearLayout>
