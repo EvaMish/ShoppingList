@@ -20,8 +20,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/days"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:text="klkjj"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_count"
@@ -30,8 +29,7 @@
             android:fontFamily="@font/inter_regular"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:layout_gravity="center"
-            android:text="5414" />
+            android:layout_gravity="center" />
 
 
     </LinearLayout>
