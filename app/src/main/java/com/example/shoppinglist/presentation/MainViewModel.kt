@@ -8,10 +8,11 @@ import com.example.shoppinglist.domain.ShopItem
 import com.example.shoppinglist.domain.usecase.DeleteShopItemUseCase
 import com.example.shoppinglist.domain.usecase.EditShopItemUseCase
 import com.example.shoppinglist.domain.usecase.GetShopListUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 class MainViewModel : ViewModel() {
     private val repository = ImplShopListRepository
-
     val getShopListUseCase = GetShopListUseCase(repository)
     val deleteShopItemUseCase = DeleteShopItemUseCase(repository)
     val editShopItemUseCase = EditShopItemUseCase(repository)
