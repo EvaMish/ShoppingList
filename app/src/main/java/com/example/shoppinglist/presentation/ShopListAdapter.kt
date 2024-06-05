@@ -14,7 +14,9 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
     companion object {
         const val ENABLED_VIEW_TYPE = 0
         const val DISABLED_VIEW_TYPE = 1
+        const val VIEW_POOL_SIZE=10
     }
+    var onshopItemLongClickListener:((ShopItem)->Unit)?=null
 
     var shopList = listOf<ShopItem>()
         set(value) {
@@ -24,6 +26,7 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
 
     var count = 0
     var status = "active"
+
 
     override fun onCreateViewHolder(
         //вызовет пару раз(то, что видит пользователь)
@@ -55,6 +58,7 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
             "no active"
         }
         holder.view.setOnLongClickListener {
+            onshopItemLongClickListener?.invoke(shopItem)
             true
         }
         holder.tvName.text = "${shopItem.name} $status"
