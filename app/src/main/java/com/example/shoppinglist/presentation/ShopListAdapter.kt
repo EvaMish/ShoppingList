@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglist.R
 import com.example.shoppinglist.domain.ShopItem
@@ -14,9 +15,11 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
     companion object {
         const val ENABLED_VIEW_TYPE = 0
         const val DISABLED_VIEW_TYPE = 1
-        const val VIEW_POOL_SIZE=15
+        const val VIEW_POOL_SIZE = 15
     }
-    var onshopItemLongClickListener:((ShopItem)->Unit)?=null
+
+    var onShopItemLongClickListener: ((ShopItem) -> Unit)? = null
+    var onClickShopItem: ((ShopItem) -> Unit)? = null
 
     var shopList = listOf<ShopItem>()
         set(value) {
@@ -52,15 +55,20 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         position: Int
     ) {//будет вызван для каждого элемента в списке, поэтому поиск вьюэлемента вынесено в другую функцию
         val shopItem = shopList[position]
+
         status = if (shopItem.enabled) {
             "active"
         } else {
             "no active"
         }
         holder.view.setOnLongClickListener {
-            onshopItemLongClickListener?.invoke(shopItem)
+            onShopItemLongClickListener?.invoke(shopItem)
             true
         }
+        holder.view.setOnClickListener {
+            onClickShopItem?.invoke(shopItem)
+        }
+
         holder.tvName.text = "${shopItem.name} $status"
         holder.tvCount.text = shopItem.count.toString()
     }
