@@ -38,7 +38,7 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         parent: ViewGroup,
         viewType: Int
     ): ShopItemViewHolder {
-        Log.d("++++++++++++", "onCreateViewHolder:${count++} ")
+
         // для наглядности, что create вызовется не для каждого элемента
         val layout = when (viewType) {
             ENABLED_VIEW_TYPE -> R.layout.item_shop_enabled
@@ -55,7 +55,7 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         position: Int
     ) {//будет вызван для каждого элемента в списке, поэтому поиск вьюэлемента вынесено в другую функцию
         val shopItem = shopList[position]
-
+        Log.d("++++++++++++", "onCreateViewHolder:${count++} ")
         status = if (shopItem.enabled) {
             "active"
         } else {
